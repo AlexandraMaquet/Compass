@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <div class="container">
+    <h1> Compass</h1>
+    <div>
+      <div>
+        <h2>Point de départ : {{selectedPosition | json}}</h2>
+        <select [(ngModel)]="selectedPosition">
+          <option *ngFor="let data of dataset ;let i = index" [value]="i">
+             {{data.name}}
+          </option>
+        </select>
+      </div>
+      <div>
+        <h2>Distance max : {{selectedDistance | json}}</h2>
+        <select [(ngModel)]="selectedDistance">
+          <option [value]= 5>5</option>
+          <option [value]= 10>10</option>
+          <option [value]= 15>15</option>
+        </select>
+      </div>
+      <button (click)="onSubmit(selectedPosition, selectedDistance)" class="btn-outline-danger">Go go!</button>
+    </div>
+    <div *ngIf="isResult">
+      <div class="row" *ngFor="let res of this.result">
+        <div class="col-md-6 left">
+          {{res.name}} : 
+        </div>
+        <div class="col-md-6">
+          {{res.distance}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
